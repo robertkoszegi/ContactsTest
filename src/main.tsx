@@ -1,3 +1,4 @@
+import { globalSettings } from "@proofkit/webviewer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RouterProvider } from "@tanstack/react-router";
 import React from "react";
@@ -5,6 +6,9 @@ import ReactDOM from "react-dom/client";
 
 import "./index.css";
 import { createAppRouter } from "./router";
+
+// Must match the Layout Object Name of the Web Viewer in FileMaker.
+globalSettings.setWebViewerName("web");
 
 const queryClient = new QueryClient();
 const routerPromise = createAppRouter(queryClient);

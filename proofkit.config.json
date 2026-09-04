@@ -11,7 +11,10 @@
       "enabled": true,
       "connectedFileName": "Contacts"
     },
-    "layouts": []
+    "layouts": [
+      { "layoutName": "Contacts", "schemaName": "Contacts" },
+      { "layoutName": "Contact Details", "schemaName": "ContactDetails" }
+    ]
   },
   "ui": "shadcn",
   "appType": "webviewer",

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "runId": "2026-09-04T01-20-22.009Z",
-  "status": "incomplete",
+  "status": "ok",
   "startedAt": "2026-09-04T01:20:22.009Z",
   "logFile": "proofkit-setup.log",
   "phases": [
@@ -78,7 +78,7 @@
     {
       "id": "git",
       "label": "Initialize git",
-      "status": "not-run",
+      "status": "ok",
       "fix": [
         "git init",
         "git add .",
@@ -86,7 +86,9 @@
       ],
       "afterFix": [
         "proofkit doctor"
-      ]
+      ],
+      "summary": "Git initialized."
     }
-  ]
+  ],
+  "finishedAt": "2026-09-04T01:23:44.962Z"
 }

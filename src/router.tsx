@@ -10,7 +10,7 @@ import {
 } from "@tanstack/react-router";
 import { z } from "zod/v4";
 
-import App from "./app";
+import { ContactsPage } from "./routes/contacts";
 import { QueryDemoPage } from "./routes/query-demo";
 
 const RootLayout = () => (
@@ -21,7 +21,7 @@ const RootLayout = () => (
           className="[&.active]:text-primary text-muted-foreground text-sm font-medium"
           to="/"
         >
-          Starter
+          Contacts
         </Link>
         <Link
           className="[&.active]:text-primary text-muted-foreground text-sm font-medium"
@@ -53,7 +53,7 @@ const rootRoute = createRootRouteWithContext<RouterContext>()({
 });
 
 const indexRoute = createRoute({
-  component: App,
+  component: ContactsPage,
   getParentRoute: () => rootRoute,
   path: "/",
 });

@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "runId": "2026-09-04T01-20-22.009Z",
+  "status": "incomplete",
+  "startedAt": "2026-09-04T01:20:22.009Z",
+  "logFile": "proofkit-setup.log",
+  "phases": [
+    {
+      "id": "scaffold",
+      "label": "Scaffold project files",
+      "status": "ok",
+      "afterFix": [
+        "proofkit doctor"
+      ],
+      "summary": "Project files written."
+    },
+    {
+      "id": "filemaker",
+      "label": "Configure FileMaker",
+      "status": "ok",
+      "fix": [
+        "proofkit doctor"
+      ],
+      "afterFix": [
+        "proofkit doctor"
+      ],
+      "summary": "FileMaker setup checked."
+    },
+    {
+      "id": "dependencies",
+      "label": "Install dependencies",
+      "status": "ok",
+      "fix": [
+        "pnpm install"
+      ],
+      "afterFix": [
+        "proofkit doctor"
+      ],
+      "summary": "Dependencies installed."
+    },
+    {
+      "id": "tooling",
+      "label": "Configure tooling",
+      "status": "ok",
+      "fix": [
+        "pnpm install"
+      ],
+      "afterFix": [
+        "proofkit doctor"
+      ],
+      "summary": "Tooling configured."
+    },
+    {
+      "id": "generation",
+      "label": "Generate initial files",
+      "status": "not-run",
+      "fix": [
+        "pnpm typegen"
+      ],
+      "afterFix": [
+        "proofkit doctor"
+      ],
+      "summary": "No initial generation needed."
+    },
+    {
+      "id": "quality",
+      "label": "Run fix and lint",
+      "status": "ok",
+      "fix": [
+        "pnpm fix",
+        "pnpm lint"
+      ],
+      "afterFix": [
+        "proofkit doctor"
+      ],
+      "summary": "Fix and lint completed."
+    },
+    {
+      "id": "git",
+      "label": "Initialize git",
+      "status": "not-run",
+      "fix": [
+        "git init",
+        "git add .",
+        "git commit -m \"Initial commit\""
+      ],
+      "afterFix": [
+        "proofkit doctor"
+      ]
+    }
+  ]
+}

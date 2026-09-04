@@ -1,0 +1,22 @@
+{
+  "$schema": "https://proofkit.proof.sh/typegen-config-schema.json",
+  "config": {
+    "type": "fmdapi",
+    "path": "./src/config/schemas/filemaker",
+    "clearOldFiles": true,
+    "clientSuffix": "Layout",
+    "validator": "zod/v4",
+    "webviewerScriptName": "PK_execute_data_api",
+    "fmMcp": {
+      "enabled": true,
+      "connectedFileName": "Contacts"
+    },
+    "layouts": []
+  },
+  "ui": "shadcn",
+  "appType": "webviewer",
+  "envFile": ".env",
+  "dataSources": [],
+  "replacedMainPage": false,
+  "registryTemplates": []
+}

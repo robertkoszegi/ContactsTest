@@ -1,0 +1,19 @@
+# This setting defines where in the repo your apps/packages that need installed dependancies exist. This of this as a list of paths to your package.json files.
+packages:
+  - "."
+
+allowBuilds:
+  "@parcel/watcher": true
+  "esbuild": true
+  "msgpackr-extract": true
+  "msw": true
+  "node": true
+  "sharp": false
+
+minimumReleaseAge: 1440
+
+trustPolicy: no-downgrade
+
+trustPolicyIgnoreAfter: 43200
+
+blockExoticSubdeps: true

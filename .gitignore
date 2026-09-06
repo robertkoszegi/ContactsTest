@@ -3,6 +3,7 @@
 *.local
 *.log*
 .env*
+.claude/settings.local.json
 
 # Dist
 node_modules

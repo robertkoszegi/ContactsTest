@@ -18,6 +18,7 @@ import {
 } from "@/config/schemas/filemaker/client";
 import type {
   TAddresses,
+  TContactDetails,
   TEmailAddresses,
   TPhoneNumbers,
 } from "@/config/schemas/filemaker/ContactDetails";
@@ -68,7 +69,7 @@ interface PortalRow<T> {
 }
 
 interface ContactDetail {
-  fieldData: TContacts;
+  fieldData: TContactDetails;
   phones: PortalRow<TPhoneNumbers>[];
   emails: PortalRow<TEmailAddresses>[];
   addresses: PortalRow<TAddresses>[];
@@ -126,7 +127,9 @@ const fetchContactDetail = async (recordId: string): Promise<ContactDetail> => {
   };
 };
 
-const displayName = (contact: TContacts): string => {
+const displayName = (
+  contact: Pick<TContacts, "Company" | "FirstName" | "LastName">
+): string => {
   const name = `${contact.FirstName} ${contact.LastName}`.trim();
   return name || contact.Company || "Untitled contact";
 };

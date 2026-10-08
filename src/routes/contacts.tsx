@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import {
   ArrowLeft,
   Building2,
+  ExternalLink,
   Globe,
   Mail,
   MapPin,
@@ -163,6 +164,43 @@ const formatAddress = (address: TAddresses): string[] => {
   );
 };
 
+/**
+ * Google Maps' keyless embed URL renders a pin for a free-text address, so no
+ * geocoding step or API key is needed.
+ */
+const mapEmbedUrl = (query: string): string =>
+  `https://maps.google.com/maps?q=${encodeURIComponent(query)}&z=15&output=embed`;
+
+const mapLinkUrl = (query: string): string =>
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+
+const AddressMap = ({ lines }: { lines: string[] }) => {
+  const query = lines.join(", ");
+
+  return (
+    <div className="mt-3">
+      <iframe
+        className="border-border bg-muted h-56 w-full rounded-xl border"
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        // oxlint-disable-next-line react/iframe-missing-sandbox -- cross-origin Google embed needs both; it cannot reach this page
+        sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+        src={mapEmbedUrl(query)}
+        title={`Map of ${query}`}
+      />
+      <a
+        className="text-primary mt-2 inline-flex items-center gap-1.5 text-xs font-medium hover:underline"
+        href={mapLinkUrl(query)}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+        Open in Google Maps
+      </a>
+    </div>
+  );
+};
+
 const TypeBadge = ({ label }: { label: string }) =>
   label ? (
     <span className="border-border text-muted-foreground rounded-full border px-2 py-0.5 text-xs">
@@ -313,21 +351,25 @@ const ContactDetailPanel = ({ recordId }: { recordId: string }) => {
       </DetailSection>
 
       <DetailSection count={addresses.length} icon={MapPin} title="Addresses">
-        <ul className="space-y-3">
-          {addresses.map((row) => (
-            <li className="text-sm" key={row.recordId}>
-              <div className="mb-1">
-                <TypeBadge label={row.fieldData["Addresses::Type"]} />
-              </div>
-              <address className="text-foreground not-italic">
-                {formatAddress(row.fieldData).map((part) => (
-                  <span className="block" key={part}>
-                    {part}
-                  </span>
-                ))}
-              </address>
-            </li>
-          ))}
+        <ul className="space-y-5">
+          {addresses.map((row) => {
+            const lines = formatAddress(row.fieldData);
+            return (
+              <li className="text-sm" key={row.recordId}>
+                <div className="mb-1">
+                  <TypeBadge label={row.fieldData["Addresses::Type"]} />
+                </div>
+                <address className="text-foreground not-italic">
+                  {lines.map((part) => (
+                    <span className="block" key={part}>
+                      {part}
+                    </span>
+                  ))}
+                </address>
+                {lines.length > 0 ? <AddressMap lines={lines} /> : null}
+              </li>
+            );
+          })}
         </ul>
       </DetailSection>
     </div>

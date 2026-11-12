@@ -10,25 +10,29 @@ import {
 } from "@tanstack/react-router";
 import { z } from "zod/v4";
 
+import { ThemeToggle } from "./components/theme-toggle";
 import { ContactsPage } from "./routes/contacts";
 import { QueryDemoPage } from "./routes/query-demo";
 
 const RootLayout = () => (
   <div className="bg-background text-foreground min-h-screen">
     <header className="border-border bg-card/80 border-b">
-      <nav className="mx-auto flex w-full max-w-5xl items-center gap-4 px-6 py-3 sm:px-10">
+      <nav className="mx-auto flex w-full max-w-6xl items-center gap-4 px-4 py-2 sm:px-8">
         <Link
-          className="[&.active]:text-primary text-muted-foreground text-sm font-medium"
+          className="[&.active]:text-primary text-muted-foreground text-sm font-medium dark:[&.active]:text-emerald-400"
           to="/"
         >
           Contacts
         </Link>
         <Link
-          className="[&.active]:text-primary text-muted-foreground text-sm font-medium"
+          className="[&.active]:text-primary text-muted-foreground text-sm font-medium dark:[&.active]:text-emerald-400"
           to="/query"
         >
           Query Demo
         </Link>
+        <div className="ml-auto">
+          <ThemeToggle />
+        </div>
       </nav>
     </header>
     <Outlet />

@@ -192,7 +192,7 @@ const AddressMap = ({ lines }: { lines: string[] }) => {
         title={`Map of ${query}`}
       />
       <a
-        className="text-primary mt-2 inline-flex items-center gap-1.5 text-xs font-medium hover:underline"
+        className="text-primary mt-2 inline-flex items-center gap-1.5 text-xs font-medium hover:underline dark:text-emerald-400"
         href={mapLinkUrl(query)}
         rel="noopener noreferrer"
         target="_blank"
@@ -302,7 +302,7 @@ const ContactDetailPanel = ({ recordId }: { recordId: string }) => {
             ) : null}
             {contact.Website ? (
               <a
-                className="text-primary mt-2 inline-flex items-center gap-1.5 text-sm font-medium hover:underline"
+                className="text-primary mt-2 inline-flex items-center gap-1.5 text-sm font-medium hover:underline dark:text-emerald-400"
                 href={normalizeUrl(contact.Website)}
                 rel="noopener noreferrer"
                 target="_blank"
@@ -342,7 +342,7 @@ const ContactDetailPanel = ({ recordId }: { recordId: string }) => {
               key={row.recordId}
             >
               <a
-                className="text-primary truncate hover:underline"
+                className="text-primary truncate hover:underline dark:text-emerald-400"
                 href={`mailto:${row.fieldData["Email Addresses::Address"]}`}
               >
                 {row.fieldData["Email Addresses::Address"]}
